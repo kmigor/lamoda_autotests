@@ -69,4 +69,4 @@
 
 <a id="video"></a>
 <h1 align="center">Видео прохождения тестов</h1>
-<img title="testResultsVideo" src="attachments/video/testResultsVideo.mp4" width="700" height="400"  alt="video">   
+<img title="testResultsVideo" src="attachments/video/testResultsVideo.gif" width="700" height="400"  alt="video">   
