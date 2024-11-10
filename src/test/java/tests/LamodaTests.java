@@ -1,87 +1,176 @@
 package tests;
 
-import io.qameta.allure.*;
-import org.junit.jupiter.api.DisplayName;
+import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.Test;
 import pages.CartPage;
 import pages.MainPage;
-import pages.HomePage;
+import pages.ProductPage;
+import pages.ProductsListPage;
+import testData.DemixBall;
+import testData.GsdBall;
+import testData.Plaid;
+import testData.Ring;
+
+import java.time.Duration;
+
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.*;
+import static io.qameta.allure.Allure.step;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LamodaTests extends TestBase {
-
-    WebSteps webSteps = new WebSteps();
-
     @Test
-    @DisplayName("Тест открытия главной страницы")
-    @Feature("Основные страницы")
-    @Story("Создание главной страницы")
-    @Owner("kmigor")
-    @Severity(SeverityLevel.CRITICAL)
-    public void mainPageTest(){
-
+    public void searchProductByArticleTest() {
         MainPage mainPage = new MainPage();
+        ProductPage productPage = new ProductPage();
+        Ring ring = new Ring();
 
-        webSteps.openPage("/");
-        webSteps.checkHeader(mainPage.getHeader(), mainPage.getHeaderText());
-        webSteps.checkTitle(mainPage.getTitle(), mainPage.getTitleText());
-        webSteps.checkFooter(mainPage.getFooter(), mainPage.getFooterText());
+        step("Открываем главную страницу", () -> {
+            open("/");
+        });
+        step("Ищем товар в поиске по артикулу", () -> {
+            mainPage.getInputSelector().setValue(ring.getArticle()).pressEnter();
+        });
+        step("Проверяем, что открылась правильная страница товара", () -> {
+            productPage.getBrandTitleSelector().shouldHave(text(ring.getBrand()));
+            productPage.getCategoryTitleSelector().scrollTo().shouldHave(text(ring.getCategory()));
+            productPage.getArticleTitleSelector().scrollTo().shouldHave(text(ring.getArticle()));
+        });
     }
 
     @Test
-    @DisplayName("Тест открытия страницы женских товаров")
-    @Feature("Основные страницы")
-    @Story("Создание страницы женских товаров")
-    @Owner("kmigor")
-    @Severity(SeverityLevel.CRITICAL)
-    public void womenHomeTest(){
-        HomePage homePage = new HomePage();
+    public void searchProductByNameTest() {
+        MainPage mainPage = new MainPage();
+        DemixBall demixBall = new DemixBall();
+        ProductPage productPage = new ProductPage();
 
-        webSteps.openPage("/women-home");
-        webSteps.checkHeader(homePage.getHeader(), homePage.getHeaderText());
-        webSteps.checkActivePage(homePage.getActivePage(), homePage.getWomenPage());
-        webSteps.checkFooter(homePage.getFooter(), homePage.getFooterText());
+        step("Открываем главную страницу", () -> {
+            open("/");
+        });
+        step("Ищем товар в поиске по названию", () -> {
+            mainPage.getInputSelector().setValue(demixBall.getTextForInput()).pressEnter();
+        });
+        step("Ищем в каталоге требуемый товар", () -> {
+            demixBall.getSearchSelector().should(Condition.exist).scrollTo().click();
+        });
+        step("Проверяем, что октрылась правильная страница товара", () -> {
+            productPage.getBrandTitleSelector().shouldHave(text(demixBall.getBrand()));
+            productPage.getCategoryTitleSelector().scrollTo().shouldHave(text(demixBall.getCategory()));
+            productPage.getArticleTitleSelector().scrollTo().shouldHave(text(demixBall.getArticle()));
+        });
     }
 
     @Test
-    @DisplayName("Тест открытия страницы мужских товаров")
-    @Feature("Основные страницы")
-    @Story("Создание страницы мужских товаров")
-    @Owner("kmigor")
-    @Severity(SeverityLevel.CRITICAL)
-    public void menHomeTest(){
-        HomePage homePage = new HomePage();
-
-        webSteps.openPage("/men-home");
-        webSteps.checkHeader(homePage.getHeader(), homePage.getHeaderText());
-        webSteps.checkActivePage(homePage.getActivePage(), homePage.getMenPage());
-        webSteps.checkFooter(homePage.getFooter(), homePage.getFooterText());
-    }
-
-    @Test
-    @DisplayName("Тест открытия страницы детских товаров")
-    @Feature("Основные страницы")
-    @Story("Создание страницы детских товаров")
-    @Owner("kmigor")
-    @Severity(SeverityLevel.CRITICAL)
-    public void kidsHomeTest(){
-        HomePage homePage = new HomePage();
-
-        webSteps.openPage("/kids-home");
-        webSteps.checkHeader(homePage.getHeader(), homePage.getHeaderText());
-        webSteps.checkActivePage(homePage.getActivePage(), homePage.getKidsPage());
-    }
-
-    @Test
-    @DisplayName("Тест открытия пустой корзины")
-    @Feature("Основные страницы")
-    @Story("Создание страницы корзины товаров")
-    @Owner("kmigor")
-    @Severity(SeverityLevel.CRITICAL)
-    public void cartTest(){
+    public void cartTest() {
+        MainPage mainPage = new MainPage();
+        ProductPage productPage = new ProductPage();
         CartPage cartPage = new CartPage();
+        Ring ring = new Ring();
 
-        webSteps.openPage("/checkout/cart");
-        webSteps.checkHeader(cartPage.getHeader(), cartPage.getHeaderText());
-        webSteps.checkActivePage(cartPage.getTitle(), cartPage.getTitleText());
+        step("Открываем главную страницу", () -> {
+            open("/");
+        });
+        step("Ищем товар в поиске по артикулу", () -> {
+            mainPage.getInputSelector().setValue(ring.getArticle()).pressEnter();
+        });
+        step("Проверяем, что октрылась правильная страница товара", () -> {
+            productPage.getBrandTitleSelector().shouldHave(text(ring.getBrand()));
+            productPage.getCategoryTitleSelector().scrollTo().shouldHave(text(ring.getCategory()));
+        });
+        step("Добавляем товар в корзину", () -> {
+            productPage.getAddButtonSelector().filterBy(text(productPage.getAddButtonText())).first().click();
+            productPage.getSizeSelector().filterBy(text(productPage.getSizeText())).first().click();
+        });
+        step("Переходим в корзину", () -> {
+            productPage.getCartButtonSelector().filterBy(text(productPage.getCartButtonText())).first().click();
+        });
+        step("Проверяем корзину", () -> {
+            cartPage.getGoodsInCartTitleSelector().shouldHave(text(cartPage.getGoodsInCartTitleText()));
+        });
+        step("Удаляем товар из корзины", () -> {
+            cartPage.getGoodsIncrementerSelector().hover();
+            cartPage.getRemoveButtonSelector().click();
+            cartPage.getEmptyCartTitleSelector().shouldHave(text(cartPage.getEmptyCartTitleText()));
+        });
+    }
+
+    @Test
+    public void filtersTest() {
+        MainPage mainPage = new MainPage();
+        ProductPage productPage = new ProductPage();
+        GsdBall gsdBall = new GsdBall();
+        ProductsListPage productsListPage = new ProductsListPage();
+
+        step("Открываем главную страницу", () -> {
+            open("/");
+        });
+        step("Ищем товар в поиске по названию", () -> {
+            mainPage.getInputSelector().setValue(gsdBall.getTextForInput()).pressEnter();
+        });
+        step("Настраиваем фильтр материалов", () -> {
+            productsListPage.getFilterSelector().filterBy(text(productsListPage.getMaterialFilterText())).first().should(appear, Duration.ofSeconds(2)).click();
+            productsListPage.getMaterialListItemSelector().filterBy(text(productsListPage.getPolymerText())).first().click();
+            productsListPage.getConfirmButtonSelector().filterBy(text(productsListPage.getConfirmButtonText())).first().click();
+        });
+        step("Настраиваем фильтр цвета", () -> {
+            productsListPage.getFilterSelector().filterBy(text(productsListPage.getColourFilterText())).first().click();
+            productsListPage.getColourListItemSelector().filterBy(text(productsListPage.getMulticolourText())).first().click();
+            productsListPage.getConfirmButtonSelector().filterBy(text(productsListPage.getConfirmButtonText())).first().click();
+        });
+        step("Настраиваем фильтр размера", () -> {
+            productsListPage.getFilterSelector().filterBy(text(productsListPage.getSizeFilterText())).first().click();
+            productsListPage.getSizeListItemSelector().filterBy(text(productsListPage.getSizeText())).first().click();
+            productsListPage.getConfirmButtonSelector().filterBy(text(productsListPage.getConfirmButtonText())).first().click();
+        });
+        step("Настраиваем фильтр бренда", () -> {
+            productsListPage.getFilterSelector().filterBy(text(productsListPage.getBrandFilterText())).first().click();
+            productsListPage.getBrandListItemSelector().filterBy(text(productsListPage.getGsdText())).first().click();
+            productsListPage.getConfirmButtonSelector().filterBy(text(productsListPage.getConfirmButtonText())).first().click();
+        });
+        step("Настраиваем фильтр страны производства", () -> {
+            productsListPage.getFilterSelector().filterBy(text(productsListPage.getCountryFilterText())).first().click();
+            productsListPage.getCountryListItemSelector().filterBy(text(productsListPage.getChinaText())).first().click();
+            productsListPage.getConfirmButtonSelector().filterBy(text(productsListPage.getConfirmButtonText())).first().click();
+        });
+        step("Ищем в отфильтрованном списке товар", () -> {
+            gsdBall.getSearchSelector().should(Condition.exist).scrollTo().click();
+        });
+        step("Проверяем, что октрылась правильная страница товара", () -> {
+            productPage.getBrandTitleSelector().shouldHave(text(gsdBall.getBrand()));
+            productPage.getCategoryTitleSelector().scrollTo().shouldHave(text(gsdBall.getCategory()));
+            productPage.getArticleTitleSelector().scrollTo().shouldHave(text(gsdBall.getArticle()));
+        });
+    }
+
+    @Test
+    public void sortingTest() {
+        MainPage mainPage = new MainPage();
+        ProductsListPage productsListPage = new ProductsListPage();
+        Plaid plaid = new Plaid();
+
+        step("Открываем главную страницу", () -> {
+            open("/");
+        });
+        step("Ищем товар в поиске по названию", () -> {
+            mainPage.getInputSelector().setValue(plaid.getTextForInput()).pressEnter();
+        });
+        step("Настраиваем сортировку товаров по цене (по возрастанию)", () -> {
+            sleep(2000);
+            productsListPage.getFilterSelector().filterBy(text(productsListPage.getSortingText())).first().click();
+            productsListPage.getSortingListItemSelector().filterBy(text(productsListPage.getSortingFromCheapest())).first().click();
+        });
+        step("Проверяем сортировку по цене", () -> {
+            sleep(2000);
+            double firstProductPrice = parsePrice(productsListPage.getFirstProductPriceElement().getText());
+            double secondProductPrice = parsePrice(productsListPage.getSecondProductPriceElement().getText());
+
+            assertTrue(firstProductPrice < secondProductPrice, "Цена первого товара должна быть меньше, чем второго");
+        });
+    }
+
+    private double parsePrice(String priceText) {
+        // Убираем валюту и пробелы, затем преобразуем в double
+        String price = priceText.replaceAll("[^\\d,]", "").replace(",", ".");
+        return Double.parseDouble(price);
     }
 }

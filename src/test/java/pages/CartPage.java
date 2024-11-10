@@ -4,16 +4,35 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class CartPage extends Page {
+public class CartPage {
+    private final SelenideElement goodsInCartTitleSelector = $(".ui-checkout-cart__products-count");
+    private final String goodsInCartTitleText = "1 товар";
+    private final SelenideElement goodsIncrementerSelector = $("[class*='_incrementor_']");
+    private final SelenideElement removeButtonSelector = $(".ui-checkout-cart__item-remove-from-cart");
+    private final SelenideElement emptyCartTitleSelector = $("[class*='_rootLogout_']").$("[class*='_title_']");
+    private final String emptyCartTitleText = "Корзина пока пустая";
 
-    private final SelenideElement title = $("._title_k4g9v_9");
-
-    private final String titleText = "Корзина пока пустая";
-
-    public SelenideElement getTitle() {
-        return title;
+    public SelenideElement getGoodsInCartTitleSelector() {
+        return goodsInCartTitleSelector;
     }
-    public String getTitleText() {
-        return titleText;
+
+    public String getGoodsInCartTitleText() {
+        return goodsInCartTitleText;
+    }
+
+    public SelenideElement getGoodsIncrementerSelector() {
+        return goodsIncrementerSelector;
+    }
+
+    public SelenideElement getRemoveButtonSelector() {
+        return removeButtonSelector;
+    }
+
+    public SelenideElement getEmptyCartTitleSelector() {
+        return emptyCartTitleSelector;
+    }
+
+    public String getEmptyCartTitleText() {
+        return emptyCartTitleText;
     }
 }
