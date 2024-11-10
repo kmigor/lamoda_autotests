@@ -42,15 +42,15 @@
 
 <img src="attachments/images/Jenkins.png" width="900">
 
-В качестве параметра можно выбрать стенд для тестирования.
+Имеется возможность выбрать стенд для тестирования в качестве параметра.
 
 ---
 
 <a id="allure"></a>
 ## <a name="Отчет в Allure">**Отчет в Allure**</a>
 
-После выполнения тестов можно посмотреть отчет в [Allure](https://jenkins.autotests.cloud/job/C30-M_X_M2-lamodaAutotests/1/allure/)
-### На скриншоте один из результатов выполнения тестов:
+После выполнения тестов имеется возможность ознакомиться с отчетом в [Allure](https://jenkins.autotests.cloud/job/C30-M_X_M2-lamodaAutotests/1/allure/)
+### На скриншоте представлен пример результата выполнения тестов:
 
 
 <img src="attachments/images/AllureReport.png" width="900">
@@ -60,7 +60,7 @@
 <a id="telegramBot"></a>
 ## <a name="Бот в Telegram">**Бот в Telegram**</a>
 
-После выполнения отчета результат так же предоставит бот в Telegram:
+После выполнения тестов, бот в Telegram присылает краткий отчет о результатах тестирования:
 <p align="center">
     <img src="attachments/images/TelegramBot.png">
 </p>
@@ -68,5 +68,5 @@
 ---
 
 <a id="video"></a>
-<h1 align="center">Видео прохождения тестов</h1>
+<h1>Пример прохождения тестов</h1>
 <img title="testResultsVideo" src="attachments/video/testResultsVideo.gif" width="700" height="400"  alt="video">   
