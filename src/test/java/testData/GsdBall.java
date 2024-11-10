@@ -5,14 +5,10 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 
 public class GsdBall {
-    private final String textForInput = "мяч";
     private final SelenideElement searchSelector = $("#MP002XU0D9YZ");
-    private final String Article = "MP002XU0D9YZ";
-    private final String Brand = "GSD";
-    private final String Category = "Мяч баскетбольный";
 
     public String getTextForInput() {
-        return textForInput;
+        return "мяч";
     }
 
     public SelenideElement getSearchSelector() {
@@ -20,14 +16,14 @@ public class GsdBall {
     }
 
     public String getArticle() {
-        return Article;
+        return "MP002XU0D9YZ";
     }
 
     public String getBrand() {
-        return Brand;
+        return "GSD";
     }
 
     public String getCategory() {
-        return Category;
+        return "Мяч баскетбольный";
     }
 }

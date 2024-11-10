@@ -1,19 +1,16 @@
 package testData;
 
 public class Ring {
-    private final String article = "MPJWLXW00FFK";
-    private final String brand = "Sokolov";
-    private final String category = "Кольцо";
 
     public String getArticle() {
-        return article;
+        return "MPJWLXW00FFK";
     }
 
     public String getBrand() {
-        return brand;
+        return "Sokolov";
     }
 
     public String getCategory() {
-        return category;
+        return "Кольцо";
     }
 }

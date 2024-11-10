@@ -7,26 +7,13 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class ProductsListPage {
     private final ElementsCollection filterSelector = $$(".v-popper");
-    private final String materialFilterText = "Материалы";
     private final ElementsCollection materialListItemSelector = $$("[class*='_valueTitle_']");
-    private final String polymerText = "Полимер";
     private final ElementsCollection confirmButtonSelector = $$(".x-button");
-    private final String confirmButtonText = "Применить";
-    private final String colourFilterText = "Цвет";
     private final ElementsCollection colourListItemSelector = $$("[class*='_value_']");
-    private final String multicolourText = "Мультиколор";
-    private final String sizeFilterText = "Размер";
     private final ElementsCollection sizeListItemSelector = $$(".x-checkbox");
-    private final String sizeText = "7";
-    private final String brandFilterText = "Бренд";
     private final ElementsCollection brandListItemSelector = $$("[class*='_valueTitle_']");
-    private final String gsdText = "GSD";
-    private final String countryFilterText = "Страна производства";
     private final ElementsCollection countryListItemSelector = $$("[class*='_valueTitle_']");
-    private final String chinaText = "Китай";
-    private final String sortingText = "Подобрали для вас";
     private final ElementsCollection sortingListItemSelector = $$("[class*='_item_']");
-    private final String sortingFromCheapest = "Сначала дешевле";
     private final SelenideElement firstProductPriceElement = $$("[class*='_price_']:not(.x-product-card-description__price-old):not(.x-product-card-description__price-second-old)").get(0);
     private final SelenideElement secondProductPriceElement = $$("[class*='_price_']:not(.x-product-card-description__price-old):not(.x-product-card-description__price-second-old)").get(1);
 
@@ -35,7 +22,7 @@ public class ProductsListPage {
     }
 
     public String getMaterialFilterText() {
-        return materialFilterText;
+        return "Материалы";
     }
 
     public ElementsCollection getMaterialListItemSelector() {
@@ -43,7 +30,7 @@ public class ProductsListPage {
     }
 
     public String getPolymerText() {
-        return polymerText;
+        return "Полимер";
     }
 
     public ElementsCollection getConfirmButtonSelector() {
@@ -51,11 +38,11 @@ public class ProductsListPage {
     }
 
     public String getConfirmButtonText() {
-        return confirmButtonText;
+        return "Применить";
     }
 
     public String getColourFilterText() {
-        return colourFilterText;
+        return "Цвет";
     }
 
     public ElementsCollection getColourListItemSelector() {
@@ -63,11 +50,11 @@ public class ProductsListPage {
     }
 
     public String getMulticolourText() {
-        return multicolourText;
+        return "Мультиколор";
     }
 
     public String getSizeFilterText() {
-        return sizeFilterText;
+        return "Размер";
     }
 
     public ElementsCollection getSizeListItemSelector() {
@@ -75,11 +62,11 @@ public class ProductsListPage {
     }
 
     public String getSizeText() {
-        return sizeText;
+        return "7";
     }
 
     public String getBrandFilterText() {
-        return brandFilterText;
+        return "Бренд";
     }
 
     public ElementsCollection getBrandListItemSelector() {
@@ -87,11 +74,11 @@ public class ProductsListPage {
     }
 
     public String getGsdText() {
-        return gsdText;
+        return "GSD";
     }
 
     public String getCountryFilterText() {
-        return countryFilterText;
+        return "Страна производства";
     }
 
     public ElementsCollection getCountryListItemSelector() {
@@ -99,11 +86,11 @@ public class ProductsListPage {
     }
 
     public String getChinaText() {
-        return chinaText;
+        return "Китай";
     }
 
     public String getSortingText() {
-        return sortingText;
+        return "Подобрали для вас";
     }
 
     public ElementsCollection getSortingListItemSelector() {
@@ -111,7 +98,7 @@ public class ProductsListPage {
     }
 
     public String getSortingFromCheapest() {
-        return sortingFromCheapest;
+        return "Сначала дешевле";
     }
 
     public SelenideElement getFirstProductPriceElement() {

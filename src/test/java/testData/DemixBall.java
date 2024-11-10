@@ -5,14 +5,10 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 
 public class DemixBall {
-    private final String textForInput = "мяч";
     private final SelenideElement searchSelector = $("#MP002XG01OCM");
-    private final String Article = "MP002XG01OCM";
-    private final String Brand = "Demix";
-    private final String Category = "Мяч гимнастический 17 см";
 
     public String getTextForInput() {
-        return textForInput;
+        return "мяч";
     }
 
     public SelenideElement getSearchSelector() {
@@ -20,14 +16,14 @@ public class DemixBall {
     }
 
     public String getArticle() {
-        return Article;
+        return "MP002XG01OCM";
     }
 
     public String getBrand() {
-        return Brand;
+        return "Demix";
     }
 
     public String getCategory() {
-        return Category;
+        return "Мяч гимнастический 17 см";
     }
 }

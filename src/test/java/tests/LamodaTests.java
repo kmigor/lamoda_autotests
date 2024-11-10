@@ -25,9 +25,7 @@ public class LamodaTests extends TestBase {
         ProductPage productPage = new ProductPage();
         Ring ring = new Ring();
 
-        step("Открываем главную страницу", () -> {
-            open("/");
-        });
+        step("Открываем главную страницу", () -> open("/"));
         step("Ищем товар в поиске по артикулу", () -> {
             mainPage.getInputSelector().setValue(ring.getArticle()).pressEnter();
         });
@@ -44,15 +42,12 @@ public class LamodaTests extends TestBase {
         DemixBall demixBall = new DemixBall();
         ProductPage productPage = new ProductPage();
 
-        step("Открываем главную страницу", () -> {
-            open("/");
-        });
+        step("Открываем главную страницу", () -> open("/"));
         step("Ищем товар в поиске по названию", () -> {
             mainPage.getInputSelector().setValue(demixBall.getTextForInput()).pressEnter();
         });
-        step("Ищем в каталоге требуемый товар", () -> {
-            demixBall.getSearchSelector().should(Condition.exist).scrollTo().click();
-        });
+        step("Ищем в каталоге требуемый товар", () -> demixBall.getSearchSelector().should(Condition.exist)
+                .scrollTo().click());
         step("Проверяем, что октрылась правильная страница товара", () -> {
             productPage.getBrandTitleSelector().shouldHave(text(demixBall.getBrand()));
             productPage.getCategoryTitleSelector().scrollTo().shouldHave(text(demixBall.getCategory()));
@@ -67,9 +62,7 @@ public class LamodaTests extends TestBase {
         CartPage cartPage = new CartPage();
         Ring ring = new Ring();
 
-        step("Открываем главную страницу", () -> {
-            open("/");
-        });
+        step("Открываем главную страницу", () -> open("/"));
         step("Ищем товар в поиске по артикулу", () -> {
             mainPage.getInputSelector().setValue(ring.getArticle()).pressEnter();
         });
@@ -81,9 +74,8 @@ public class LamodaTests extends TestBase {
             productPage.getAddButtonSelector().filterBy(text(productPage.getAddButtonText())).first().click();
             productPage.getSizeSelector().filterBy(text(productPage.getSizeText())).first().click();
         });
-        step("Переходим в корзину", () -> {
-            productPage.getCartButtonSelector().filterBy(text(productPage.getCartButtonText())).first().click();
-        });
+        step("Переходим в корзину", () -> productPage.getCartButtonSelector()
+                .filterBy(text(productPage.getCartButtonText())).first().click());
         step("Проверяем корзину", () -> {
             cartPage.getGoodsInCartTitleSelector().shouldHave(text(cartPage.getGoodsInCartTitleText()));
         });
@@ -101,40 +93,48 @@ public class LamodaTests extends TestBase {
         GsdBall gsdBall = new GsdBall();
         ProductsListPage productsListPage = new ProductsListPage();
 
-        step("Открываем главную страницу", () -> {
-            open("/");
-        });
+        step("Открываем главную страницу", () -> open("/"));
         step("Ищем товар в поиске по названию", () -> {
             mainPage.getInputSelector().setValue(gsdBall.getTextForInput()).pressEnter();
         });
         step("Настраиваем фильтр материалов", () -> {
-            productsListPage.getFilterSelector().filterBy(text(productsListPage.getMaterialFilterText())).first().should(appear, Duration.ofSeconds(2)).click();
-            productsListPage.getMaterialListItemSelector().filterBy(text(productsListPage.getPolymerText())).first().click();
-            productsListPage.getConfirmButtonSelector().filterBy(text(productsListPage.getConfirmButtonText())).first().click();
+            productsListPage.getFilterSelector().filterBy(text(productsListPage.getMaterialFilterText()))
+                    .first().should(appear, Duration.ofSeconds(2)).click();
+            productsListPage.getMaterialListItemSelector().filterBy(text(productsListPage.getPolymerText()))
+                    .first().click();
+            productsListPage.getConfirmButtonSelector().filterBy(text(productsListPage.getConfirmButtonText()))
+                    .first().click();
         });
         step("Настраиваем фильтр цвета", () -> {
-            productsListPage.getFilterSelector().filterBy(text(productsListPage.getColourFilterText())).first().click();
-            productsListPage.getColourListItemSelector().filterBy(text(productsListPage.getMulticolourText())).first().click();
-            productsListPage.getConfirmButtonSelector().filterBy(text(productsListPage.getConfirmButtonText())).first().click();
+            productsListPage.getFilterSelector().filterBy(text(productsListPage.getColourFilterText()))
+                    .first().click();
+            productsListPage.getColourListItemSelector().filterBy(text(productsListPage.getMulticolourText()))
+                    .first().click();
+            productsListPage.getConfirmButtonSelector().filterBy(text(productsListPage.getConfirmButtonText()))
+                    .first().click();
         });
         step("Настраиваем фильтр размера", () -> {
             productsListPage.getFilterSelector().filterBy(text(productsListPage.getSizeFilterText())).first().click();
             productsListPage.getSizeListItemSelector().filterBy(text(productsListPage.getSizeText())).first().click();
-            productsListPage.getConfirmButtonSelector().filterBy(text(productsListPage.getConfirmButtonText())).first().click();
+            productsListPage.getConfirmButtonSelector().filterBy(text(productsListPage.getConfirmButtonText()))
+                    .first().click();
         });
         step("Настраиваем фильтр бренда", () -> {
             productsListPage.getFilterSelector().filterBy(text(productsListPage.getBrandFilterText())).first().click();
             productsListPage.getBrandListItemSelector().filterBy(text(productsListPage.getGsdText())).first().click();
-            productsListPage.getConfirmButtonSelector().filterBy(text(productsListPage.getConfirmButtonText())).first().click();
+            productsListPage.getConfirmButtonSelector().filterBy(text(productsListPage.getConfirmButtonText()))
+                    .first().click();
         });
         step("Настраиваем фильтр страны производства", () -> {
-            productsListPage.getFilterSelector().filterBy(text(productsListPage.getCountryFilterText())).first().click();
-            productsListPage.getCountryListItemSelector().filterBy(text(productsListPage.getChinaText())).first().click();
-            productsListPage.getConfirmButtonSelector().filterBy(text(productsListPage.getConfirmButtonText())).first().click();
+            productsListPage.getFilterSelector().filterBy(text(productsListPage.getCountryFilterText()))
+                    .first().click();
+            productsListPage.getCountryListItemSelector().filterBy(text(productsListPage.getChinaText()))
+                    .first().click();
+            productsListPage.getConfirmButtonSelector().filterBy(text(productsListPage.getConfirmButtonText()))
+                    .first().click();
         });
-        step("Ищем в отфильтрованном списке товар", () -> {
-            gsdBall.getSearchSelector().should(Condition.exist).scrollTo().click();
-        });
+        step("Ищем в отфильтрованном списке товар", () -> gsdBall.getSearchSelector().should(Condition.exist)
+                .scrollTo().click());
         step("Проверяем, что октрылась правильная страница товара", () -> {
             productPage.getBrandTitleSelector().shouldHave(text(gsdBall.getBrand()));
             productPage.getCategoryTitleSelector().scrollTo().shouldHave(text(gsdBall.getCategory()));
@@ -148,23 +148,23 @@ public class LamodaTests extends TestBase {
         ProductsListPage productsListPage = new ProductsListPage();
         Plaid plaid = new Plaid();
 
-        step("Открываем главную страницу", () -> {
-            open("/");
-        });
+        step("Открываем главную страницу", () -> open("/"));
         step("Ищем товар в поиске по названию", () -> {
             mainPage.getInputSelector().setValue(plaid.getTextForInput()).pressEnter();
         });
         step("Настраиваем сортировку товаров по цене (по возрастанию)", () -> {
             sleep(2000);
             productsListPage.getFilterSelector().filterBy(text(productsListPage.getSortingText())).first().click();
-            productsListPage.getSortingListItemSelector().filterBy(text(productsListPage.getSortingFromCheapest())).first().click();
+            productsListPage.getSortingListItemSelector().filterBy(text(productsListPage.getSortingFromCheapest()))
+                    .first().click();
         });
         step("Проверяем сортировку по цене", () -> {
             sleep(2000);
             double firstProductPrice = parsePrice(productsListPage.getFirstProductPriceElement().getText());
             double secondProductPrice = parsePrice(productsListPage.getSecondProductPriceElement().getText());
 
-            assertTrue(firstProductPrice < secondProductPrice, "Цена первого товара должна быть меньше, чем второго");
+            assertTrue(firstProductPrice < secondProductPrice, "Цена первого товара должна быть " +
+                    "меньше, чем второго");
         });
     }
 

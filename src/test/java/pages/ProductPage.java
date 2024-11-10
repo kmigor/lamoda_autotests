@@ -11,11 +11,8 @@ public class ProductPage {
     private final SelenideElement categoryTitleSelector = $("[class*='_modelName_']");
     private final SelenideElement articleTitleSelector = $(".ui-product-description-attribute-sku");
     private final ElementsCollection addButtonSelector = $$(".x-button");
-    private final String addButtonText = "Добавить в корзину";
     private final ElementsCollection sizeSelector = $$("[class*='_firstRow_']");
-    private final String sizeText = "16 RUS";
     private final ElementsCollection cartButtonSelector = $$(".x-button");
-    private final String cartButtonText = "Перейти в корзину";
 
     public SelenideElement getBrandTitleSelector() {
         return brandTitleSelector;
@@ -34,7 +31,7 @@ public class ProductPage {
     }
 
     public String getAddButtonText() {
-        return addButtonText;
+        return "Добавить в корзину";
     }
 
     public ElementsCollection getSizeSelector() {
@@ -42,7 +39,7 @@ public class ProductPage {
     }
 
     public String getSizeText() {
-        return sizeText;
+        return "16 RUS";
     }
 
     public ElementsCollection getCartButtonSelector() {
@@ -50,6 +47,6 @@ public class ProductPage {
     }
 
     public String getCartButtonText() {
-        return cartButtonText;
+        return "Перейти в корзину";
     }
 }
