@@ -1,6 +1,10 @@
 package tests;
 
 import com.codeborne.selenide.Condition;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.CartPage;
 import pages.MainPage;
@@ -20,6 +24,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LamodaTests extends TestBase {
     @Test
+    @Owner("kmigor")
+    @Severity(SeverityLevel.BLOCKER)
+    @DisplayName("Проверка поиска кольца по артикулу")
     public void searchProductByArticleTest() {
         MainPage mainPage = new MainPage();
         ProductPage productPage = new ProductPage();
@@ -37,6 +44,9 @@ public class LamodaTests extends TestBase {
     }
 
     @Test
+    @Owner("kmigor")
+    @Severity(SeverityLevel.BLOCKER)
+    @DisplayName("Проверка поиска мяча Demix через ключевое слово")
     public void searchProductByNameTest() {
         MainPage mainPage = new MainPage();
         DemixBall demixBall = new DemixBall();
@@ -56,6 +66,9 @@ public class LamodaTests extends TestBase {
     }
 
     @Test
+    @Owner("kmigor")
+    @Severity(SeverityLevel.BLOCKER)
+    @DisplayName("Проверка работы корзины. Добавление товара в корзину, удаление товара из корзины.")
     public void cartTest() {
         MainPage mainPage = new MainPage();
         ProductPage productPage = new ProductPage();
@@ -87,6 +100,9 @@ public class LamodaTests extends TestBase {
     }
 
     @Test
+    @Owner("kmigor")
+    @Severity(SeverityLevel.BLOCKER)
+    @DisplayName("Проверка работы фильтров Материала, Цвета, Размера, Бренда, Страны производства.")
     public void filtersTest() {
         MainPage mainPage = new MainPage();
         ProductPage productPage = new ProductPage();
@@ -143,6 +159,9 @@ public class LamodaTests extends TestBase {
     }
 
     @Test
+    @Owner("kmigor")
+    @Severity(SeverityLevel.BLOCKER)
+    @DisplayName("Проверка сортировки товара по цене, по возрастанию.")
     public void sortingTest() {
         MainPage mainPage = new MainPage();
         ProductsListPage productsListPage = new ProductsListPage();
