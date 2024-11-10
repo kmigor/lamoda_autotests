@@ -179,7 +179,7 @@ public class LamodaTests extends TestBase {
                     .first().click();
         });
         step("Проверяем сортировку по цене", () -> {
-            sleep(2000);
+            sleep(3000);
             double firstProductPrice = parsePrice(productsListPage.getFirstProductPriceElement().getText());
             double secondProductPrice = parsePrice(productsListPage.getSecondProductPriceElement().getText());
 
