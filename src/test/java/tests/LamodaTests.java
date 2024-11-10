@@ -114,8 +114,9 @@ public class LamodaTests extends TestBase {
             mainPage.getInputSelector().setValue(gsdBall.getTextForInput()).pressEnter();
         });
         step("Настраиваем фильтр материалов", () -> {
+            sleep(2000);
             productsListPage.getFilterSelector().filterBy(text(productsListPage.getMaterialFilterText()))
-                    .first().should(appear, Duration.ofSeconds(2)).click();
+                    .first().click();
             productsListPage.getMaterialListItemSelector().filterBy(text(productsListPage.getPolymerText()))
                     .first().click();
             productsListPage.getConfirmButtonSelector().filterBy(text(productsListPage.getConfirmButtonText()))
