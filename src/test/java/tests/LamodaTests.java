@@ -87,8 +87,11 @@ public class LamodaTests extends TestBase {
             productPage.getAddButtonSelector().filterBy(text(productPage.getAddButtonText())).first().click();
             productPage.getSizeSelector().filterBy(text(productPage.getSizeText())).first().click();
         });
-        step("Переходим в корзину", () -> productPage.getCartButtonSelector()
-                .filterBy(text(productPage.getCartButtonText())).first().click());
+        step("Переходим в корзину", () -> {
+            sleep(2000);
+            productPage.getCartButtonSelector()
+                .filterBy(text(productPage.getCartButtonText())).first().click();
+        });
         step("Проверяем корзину", () -> {
             cartPage.getGoodsInCartTitleSelector().shouldHave(text(cartPage.getGoodsInCartTitleText()));
         });
