@@ -26,7 +26,7 @@ public class LamodaTests extends TestBase {
     @Test
     @Owner("kmigor")
     @Severity(SeverityLevel.BLOCKER)
-    @DisplayName("Проверка поиска кольца по артикулу")
+    @DisplayName("Т001 - Проверка поиска кольца по артикулу.")
     public void searchProductByArticleTest() {
         MainPage mainPage = new MainPage();
         ProductPage productPage = new ProductPage();
@@ -46,7 +46,7 @@ public class LamodaTests extends TestBase {
     @Test
     @Owner("kmigor")
     @Severity(SeverityLevel.BLOCKER)
-    @DisplayName("Проверка поиска мяча Demix через ключевое слово")
+    @DisplayName("Т002 - Проверка поиска мяча Demix через ключевое слово.")
     public void searchProductByNameTest() {
         MainPage mainPage = new MainPage();
         DemixBall demixBall = new DemixBall();
@@ -68,7 +68,7 @@ public class LamodaTests extends TestBase {
     @Test
     @Owner("kmigor")
     @Severity(SeverityLevel.BLOCKER)
-    @DisplayName("Проверка работы корзины. Добавление товара в корзину, удаление товара из корзины.")
+    @DisplayName("Т003 - Проверка работы корзины. Добавление товара в корзину, удаление товара из корзины.")
     public void cartTest() {
         MainPage mainPage = new MainPage();
         ProductPage productPage = new ProductPage();
@@ -105,7 +105,7 @@ public class LamodaTests extends TestBase {
     @Test
     @Owner("kmigor")
     @Severity(SeverityLevel.BLOCKER)
-    @DisplayName("Проверка работы фильтров Материала, Цвета, Размера, Бренда, Страны производства.")
+    @DisplayName("Т004 - Проверка работы фильтров Материала, Цвета, Размера, Бренда, Страны производства.")
     public void filtersTest() {
         MainPage mainPage = new MainPage();
         ProductPage productPage = new ProductPage();
@@ -165,7 +165,7 @@ public class LamodaTests extends TestBase {
     @Test
     @Owner("kmigor")
     @Severity(SeverityLevel.BLOCKER)
-    @DisplayName("Проверка сортировки товара по цене, по возрастанию.")
+    @DisplayName("Т005 - Проверка сортировки товара по цене, по возрастанию.")
     public void sortingTest() {
         MainPage mainPage = new MainPage();
         ProductsListPage productsListPage = new ProductsListPage();
