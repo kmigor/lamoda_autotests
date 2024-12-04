@@ -2,51 +2,39 @@ package pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import helpers.JsonChecker;
+import pages.components.CartPopUp;
+import pages.components.SizeSelector;
 
+import java.io.IOException;
+
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class ProductPage {
     private final SelenideElement brandTitleSelector = $(".product-title__brand-name");
     private final SelenideElement categoryTitleSelector = $("[class*='_modelName_']");
-    private final SelenideElement articleTitleSelector = $(".ui-product-description-attribute-sku");
     private final ElementsCollection addButtonSelector = $$(".x-button");
-    private final ElementsCollection sizeSelector = $$("[class*='_firstRow_']");
-    private final ElementsCollection cartButtonSelector = $$(".x-button");
+    private final String addButtonText = "Добавить в корзину";
+    private final SizeSelector sizeSelect = new SizeSelector();
+    private final CartPopUp cartPopUp = new CartPopUp();
 
-    public SelenideElement getBrandTitleSelector() {
-        return brandTitleSelector;
+    public void checkPage(String jsonName) {
+        JsonChecker jsonChecker = new JsonChecker();
+        try {
+            jsonChecker.checkJson(jsonName, categoryTitleSelector.getText(), brandTitleSelector.getText());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public SelenideElement getCategoryTitleSelector() {
-        return categoryTitleSelector;
+    public void addToCart(String size) {
+        addButtonSelector.filterBy(text(addButtonText)).first().click();
+        sizeSelect.selectSize(size);
     }
 
-    public SelenideElement getArticleTitleSelector() {
-        return articleTitleSelector;
-    }
-
-    public ElementsCollection getAddButtonSelector() {
-        return addButtonSelector;
-    }
-
-    public String getAddButtonText() {
-        return "Добавить в корзину";
-    }
-
-    public ElementsCollection getSizeSelector() {
-        return sizeSelector;
-    }
-
-    public String getSizeText() {
-        return "16 RUS";
-    }
-
-    public ElementsCollection getCartButtonSelector() {
-        return cartButtonSelector;
-    }
-
-    public String getCartButtonText() {
-        return "Перейти в корзину";
+    public void openCart() {
+        cartPopUp.openCart();
     }
 }

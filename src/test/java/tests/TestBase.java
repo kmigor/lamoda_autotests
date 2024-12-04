@@ -26,6 +26,7 @@ public class TestBase {
         }
         Configuration.baseUrl = "https://www.lamoda.ru";
         Configuration.pageLoadStrategy = "eager";
+        Configuration.timeout = 5000;
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of("enableVNC", true, "enableVideo", true));
         Configuration.browserCapabilities = capabilities;

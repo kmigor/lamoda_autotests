@@ -37,7 +37,9 @@ dependencies {
             'org.junit.jupiter:junit-jupiter',
             "com.codeborne:selenide:7.4.3",
             'org.slf4j:slf4j-simple:2.0.7',
-            "io.qameta.allure:allure-selenide:$allureVersion"
+            "io.qameta.allure:allure-selenide:$allureVersion",
+            "com.fasterxml.jackson.core:jackson-databind:2.13.1",
+            'org.assertj:assertj-core:3.24.2'
     )
 }
 

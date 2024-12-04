@@ -1,111 +1,73 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
+import helpers.PriceOperator;
+import pages.components.ProductListPageFilters.*;
 
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ProductsListPage {
     private final ElementsCollection filterSelector = $$(".v-popper");
-    private final ElementsCollection materialListItemSelector = $$("[class*='_valueTitle_']");
-    private final ElementsCollection confirmButtonSelector = $$(".x-button");
-    private final ElementsCollection colourListItemSelector = $$("[class*='_value_']");
-    private final ElementsCollection sizeListItemSelector = $$(".x-checkbox");
-    private final ElementsCollection brandListItemSelector = $$("[class*='_valueTitle_']");
-    private final ElementsCollection countryListItemSelector = $$("[class*='_valueTitle_']");
-    private final ElementsCollection sortingListItemSelector = $$("[class*='_item_']");
-    private final SelenideElement firstProductPriceElement = $$("[class*='_price_']:not(.x-product-card-description__price-old):not(.x-product-card-description__price-second-old)").get(0);
-    private final SelenideElement secondProductPriceElement = $$("[class*='_price_']:not(.x-product-card-description__price-old):not(.x-product-card-description__price-second-old)").get(1);
+    private final ElementsCollection productPriceElement = $$("[class*='_price_']:not(.x-product-card-description__price-old):not(.x-product-card-description__price-second-old)");
+    private final MaterialFilter materialFilter = new MaterialFilter();
+    private final ColourFilter colourFilter = new ColourFilter();
+    private final SizeFilter sizeFilter = new SizeFilter();
+    private final BrandFilter brandFilter = new BrandFilter();
+    private final CountryFilter countryFilter = new CountryFilter();
+    private final SortingFilter sortingFilter = new SortingFilter();
 
-    public ElementsCollection getFilterSelector() {
-        return filterSelector;
+    public void findGood(String article) {
+        String selector = "#" + article;
+        $(selector).should(Condition.exist)
+                .scrollTo()
+                .click();
     }
 
-    public String getMaterialFilterText() {
-        return "Материалы";
+    public void addMaterialFilter(String material){
+        filterSelector.filterBy(text(materialFilter.getName()))
+                .first().should(exist).shouldBe(visible).click();
+        materialFilter.selectMaterial(material);
     }
 
-    public ElementsCollection getMaterialListItemSelector() {
-        return materialListItemSelector;
+    public void addColourFilter(String colour){
+        filterSelector.filterBy(text(colourFilter.getName()))
+                .first().should(exist).shouldBe(visible).click();
+        colourFilter.selectColour(colour);
     }
 
-    public String getPolymerText() {
-        return "Полимер";
+    public void addSizeFilter(String size){
+        filterSelector.filterBy(text(sizeFilter.getName()))
+                .first().should(exist).shouldBe(visible).click();
+        sizeFilter.selectSize(size);
     }
 
-    public ElementsCollection getConfirmButtonSelector() {
-        return confirmButtonSelector;
+    public void addBrandFilter(String brand){
+        filterSelector.filterBy(text(brandFilter.getName()))
+                .first().should(exist).shouldBe(visible).click();
+        brandFilter.selectBrand(brand);
     }
 
-    public String getConfirmButtonText() {
-        return "Применить";
+    public void addCountryFilter(String country){
+        filterSelector.filterBy(text(countryFilter.getName()))
+                .first().should(exist).shouldBe(visible).click();
+        countryFilter.selectCountry(country);
     }
 
-    public String getColourFilterText() {
-        return "Цвет";
+    public void addSortingFromCheapest(){
+        filterSelector.filterBy(text(sortingFilter.getName()))
+                .first().should(exist).shouldBe(visible).click();
+        sortingFilter.sortFromCheapest();
     }
 
-    public ElementsCollection getColourListItemSelector() {
-        return colourListItemSelector;
-    }
+    public void checkSorting(){
+        double firstProductPrice = PriceOperator.parsePrice(productPriceElement.get(0).getText());
+        double secondProductPrice = PriceOperator.parsePrice(productPriceElement.get(1).getText());
 
-    public String getMulticolourText() {
-        return "Мультиколор";
-    }
-
-    public String getSizeFilterText() {
-        return "Размер";
-    }
-
-    public ElementsCollection getSizeListItemSelector() {
-        return sizeListItemSelector;
-    }
-
-    public String getSizeText() {
-        return "7";
-    }
-
-    public String getBrandFilterText() {
-        return "Бренд";
-    }
-
-    public ElementsCollection getBrandListItemSelector() {
-        return brandListItemSelector;
-    }
-
-    public String getGsdText() {
-        return "GSD";
-    }
-
-    public String getCountryFilterText() {
-        return "Страна производства";
-    }
-
-    public ElementsCollection getCountryListItemSelector() {
-        return countryListItemSelector;
-    }
-
-    public String getChinaText() {
-        return "Китай";
-    }
-
-    public String getSortingText() {
-        return "Подобрали для вас";
-    }
-
-    public ElementsCollection getSortingListItemSelector() {
-        return sortingListItemSelector;
-    }
-
-    public String getSortingFromCheapest() {
-        return "Сначала дешевле";
-    }
-
-    public SelenideElement getFirstProductPriceElement() {
-        return firstProductPriceElement;
-    }
-
-    public SelenideElement getSecondProductPriceElement() {
-        return secondProductPriceElement;
+        assertTrue(firstProductPrice <= secondProductPrice, "Цена первого товара должна быть " +
+                "меньше, чем второго");
     }
 }
